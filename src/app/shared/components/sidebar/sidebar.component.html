@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+<span>Menu</span>
+</mat-toolbar>
+
+<mat-nav-list>
+  <div *ngIf="isLogged; else inicio">
+<a mat-list-item *ngFor="let menu of Menu" routerLink="{{menu.ruta}}" >
+  <mat-icon>{{menu.icon}}</mat-icon>
+    <span class="nav-link">{{menu.nombre}}</span>
+</a>
+  </div>
+  <ng-template #inicio>
+    <a mat-list-item *ngFor="let menu of Menu2" routerLink="{{menu.ruta}}" >
+  <mat-icon>{{menu.icon}}</mat-icon>
+    <span class="nav-link">{{menu.nombre}}</span>
+</a>
+  </ng-template>
+
+</mat-nav-list>

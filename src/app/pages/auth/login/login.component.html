@@ -1,0 +1,40 @@
+<div class="login-form">
+
+  <mat-card>
+    <mat-card-content>
+      <h1>Inicio Sesión</h1>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <mat-form-field appearance="outline"  class="full-width">
+        <mat-label> Nombre usuario </mat-label>
+        <input  formControlName="username" type="text" matInput (keypress)="lentrasOnly($event)" oninput="this.value = this.value.toLowerCase()" minlength="3" maxlength="10"/>
+        <mat-error *ngIf="isValidField('username')">
+          {{getErrorMessage('username')}}
+        </mat-error>
+      </mat-form-field>
+<!--
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label> Contraseña </mat-label>
+        <input formControlName="password" type="password" matInput />
+        <mat-error *ngIf="isValidField('password')">
+          {{getErrorMessage('password')}}
+        </mat-error>
+      </mat-form-field> -->
+
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Contraseña</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" type="password" >
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="isValidField('password')">
+          {{getErrorMessagePassword('password')}}
+        </mat-error>
+      </mat-form-field>
+
+      <button [disabled]="loginForm.invalid" type="submit" mat-raised-button color="primary">Acceder</button>
+    </form>
+    </mat-card-content>
+  </mat-card>
+</div>
